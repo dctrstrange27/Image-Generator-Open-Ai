@@ -12,10 +12,16 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      fontFamily: {
+        archivo: ['var(--archivo)'],
+        inter: ['var(--inter)'],
+        space: ['var(--space)'],
+        nuni:['var(--nuni)']
+      },
     },
   },
   daisyui: {
-    themes: ["lofi", "black"],
+    themes: ["lofi", "black","night"],
   },
   plugins: [require("daisyui")],
 }
