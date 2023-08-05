@@ -2,7 +2,7 @@ import Image from "next";
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-x-hidden overflow-y-hidden m-auto w-[90%] project-page">
+    <main className="overflow-x-hidden overflow-y-hidden border-[1px h-[88vh] m-auto w-[90%] project-page">
       <div className="h-screen w-full border-[1px flex flex-col justify-center">
         <h1 className="font-archivo text-[4rem] my-10">
           Unleash the Power of DALL-E AI
@@ -11,7 +11,7 @@ export default function Home() {
         <br></br>
         <p className="font-inter max-w-4xl">
           Embrace the revolution of AI-generated art and witness the incredible
-          possibilities it holds. Whether you're an artist seeking new
+          possibilities it holds. Whether you&apos;re an artist seeking new
           dimensions or an art lover craving fresh perspectives, DALL-E Artistry
           will redefine how you perceive the world.
         </p>
