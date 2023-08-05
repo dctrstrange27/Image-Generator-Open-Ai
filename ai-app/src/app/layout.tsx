@@ -42,7 +42,7 @@ export default function RootLayout({
 }) {
   return (
     <html data-theme="night" className='' lang="en">
-      <body className={`${header_h1.variable} ${para.variable} ${space.variable} ${nuni.variable}`}>
+      <body className={`${header_h1.variable} ${para.variable} ${space.variable} ${nuni.variable} overflow-x-hidden `}>
         <Nav></Nav>
         {children}
         <Footer></Footer>

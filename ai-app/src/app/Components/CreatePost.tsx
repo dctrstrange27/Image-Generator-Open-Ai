@@ -3,9 +3,7 @@ import React, { useEffect, useState } from "react";
 import Image from "../../../node_modules/next/image";
 import Link from "../../../node_modules/next/link";
 import { CgSpinnerAlt } from "react-icons/cg";
-import { DiagnosticCategory } from "../../../node_modules/typescript/lib/typescript";
 import { getRandomPrompt } from "../utils/index";
-import { setMaxIdleHTTPParsers } from "http";
 import axios from "../../../node_modules/axios/index";
 const CreatePost = () => {
   interface formTypes {
@@ -31,7 +29,7 @@ const CreatePost = () => {
           method:'POST',
           headers:{
             'Content-Type':'application/json',
-          },
+          },  
           body:JSON.stringify({
             prompt:`${form.prompt}`
           })
@@ -105,9 +103,9 @@ const CreatePost = () => {
           <div className="border-[1px py-10 lg:px-16 flex justify-center lg:justify-start">
             {form.photo ? (
               <>
-              <img src={form.photo}
+              <Image src={form.photo}
               alt={form.photo}
-              className="w-full h-full object-contain"></img>
+              className="w-full h-full object-contain"/>
               </>
             ) : (
               <>

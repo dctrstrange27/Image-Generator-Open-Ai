@@ -12,6 +12,7 @@ const Nav = () => {
     if(currentUrl === "http://localhost:3000/create-post"){
       setIsCurrent(true)
     }
+   
   },[])
 
 

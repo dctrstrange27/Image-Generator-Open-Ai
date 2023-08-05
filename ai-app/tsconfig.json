@@ -21,10 +21,10 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@lib/*": ["lib/*"],
-      "@models/*": ["models/*"],
-      "@server/*": ["server/*"],
-      "@node_modules/*": ["node_modules/*"]
+      "@lib/*": ["./lib/*"],
+      "@models/*": ["./models/*"],
+      "@server/*": ["./server/*"],
+      "@node_modules/*": ["./node_modules/*"]
     },
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
