@@ -41,8 +41,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html data-theme="night" className='' lang="en">
-      <body className={`${header_h1.variable} ${para.variable} ${space.variable} ${nuni.variable} overflow-x-hidden `}>
+    <html data-theme="night" className='border-[1px' lang="en">
+      <body className={`${header_h1.variable} ${para.variable} ${space.variable} ${nuni.variable} overflow-x-hidden overflow-y-auto `}>
         <Nav></Nav>
         {children}
         <Footer></Footer>

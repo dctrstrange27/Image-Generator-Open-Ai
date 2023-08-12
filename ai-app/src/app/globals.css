@@ -22,11 +22,11 @@
 
 .project-page { 
   @apply after:absolute after:bg-gradient-to-r after:saturate-100 z-0 after:dark:-z-10 after:-z-10 after:duration-300 after:opacity-20 after:ease-in-out after:blur-[60px] 
-  after:top-[10%] after:left-[90%] after:rotate-45 
+  after:top-[10%] after:left-[90%] after:rotate-45 after:border-[1px]
   after:to-[#019AF9] after:from-[#711aec] after:lg:w-[200px] after:lg:h-[1700px] after:w-[400px] after:h-[700px]
   after:transform after:-translate-x-1/2 after:-translate-y-1/2 
 
-  before:absolute before:bg-gradient-conic  before:dark:-z-10 before:-z-10 before:duration-300 before:opacity-60 before:ease-in-out before:blur-[100px] 
+  before:absolute before:bg-gradient-conic  before:dark:-z-10 before:-z-10 before:duration-300 before:opacity-60 before:ease-in-out before:blur-[70px] 
   before:top-[60%] before:left-[30%] 
   before:from-[#0141ff] before:via-[#0141ff] before:rounded-full  before:w-[500px] before:h-[500px]
   before:transform before:-translate-x-1/2 before:-translate-y-1/2 

@@ -17,26 +17,48 @@ const CreatePost = () => {
     photo: "",
   });
   const [isGenerating, setIsGenerating] = useState(false);
+  const [error, setError] = useState("");
+  const [errorVisible, setErroVisible] = useState(false);
+  const [infoVisible, setInfoVisible] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setErroVisible(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [errorVisible]);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setInfoVisible(false);
+    }, 10000);
+    return () => clearTimeout(timer);
+  }, [infoVisible]);
 
-  const generateImage = async (e:any) => {
-    console.log("hello")
-    e.preventDefault()
+  const generateImage = async (e: any) => {
+    console.log("hello");
+    e.preventDefault();
     if (form.prompt) {
       try {
         setIsGenerating(true);
         const res = await fetch("api/dalle", {
-          method:'POST',
-          headers:{
-            'Content-Type':'application/json',
-          },  
-          body:JSON.stringify({
-            prompt:`${form.prompt}`
-          })
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            prompt: `${form.prompt}`,
+          }),
         });
-        const data = await res.json()
-        console.log(data)
-        setForm({ ...form, photo: data.url});
+        const data = await res.json();
+        if (data.error.message) {
+          setError(data.error.message);
+          setErroVisible(true);
+          setInfoVisible(true)
+        } else {
+          console.log(data);
+        }
+
+        setForm({ ...form, photo: data.url });
       } catch (error) {
         alert(error);
       } finally {
@@ -53,9 +75,50 @@ const CreatePost = () => {
     e.preventDefault();
     setForm((prev) => ({ ...prev, prompt: getRandomPrompt(form.prompt) }));
   };
-
   return (
-    <div className="h-screen lg:h-fit lg:min-h-fit font-inter border-[1px lg:m-auto text-start lg:w-[80%] xl:w-[70%]">
+    <div className="h-fit border-[1px auto-cols-auto project-page
+                    font-inter border-[1px lg:m-auto py-5 text-start lg:w-[80%] xl:w-[70%]">
+      <div className="flex flex-col gap-2 border-[1px">
+      {errorVisible && (
+        <div className="alert alert-error">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="stroke-current shrink-0 h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <span>{error}</span>
+        </div>
+      )}
+    {infoVisible && (
+        <div className="alert alert-info">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            className="stroke-current shrink-0 w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
+          </svg>
+          <span>
+            Unfortunately my free credit on my accout already expired!
+          </span>
+        </div>
+      )}
+      </div>
+  
       <div className="px-5 py-16 border-[1px">
         <h1 className=" text-start font-bold text-3xl ">Create</h1>
         <p className="">
@@ -65,7 +128,7 @@ const CreatePost = () => {
         <br></br>
         <br></br>
         <br></br>
-        <form className="border-[1px">
+        <form onSubmit={(e)=> generateImage(e)} className="border-[1px">
           <div className="form-control w-full max-w-xs">
             <label className="label">
               <span className="label-text">What is your name?</span>
@@ -76,6 +139,7 @@ const CreatePost = () => {
               value={form.name}
               onChange={handleForm}
               placeholder="Johnny"
+              required={true}
               className="input input-bordered w-full max-w-xs"
             />
             <label className="label"></label>
@@ -97,15 +161,18 @@ const CreatePost = () => {
               value={form.prompt}
               onChange={handleForm}
               placeholder="Type here"
+              required={true}
               className="input input-bordered w-full lg:max-w-xl"
             />
           </div>
           <div className="border-[1px py-10 lg:px-16 flex justify-center lg:justify-start">
             {form.photo ? (
               <>
-              <Image src={form.photo}
-              alt={form.photo}
-              className="w-full h-full object-contain"/>
+                <Image
+                  src={form.photo}
+                  alt={form.photo}
+                  className="w-full h-full object-contain"
+                />
               </>
             ) : (
               <>
@@ -150,9 +217,6 @@ const CreatePost = () => {
           <br></br>
           <br></br>
           <button
-            onClick={(e) => {
-              generateImage(e);
-            }}
             className="text-center hover w-full lg:max-w-xl rounded-2xl flex justify-center items-center btn-square btn-primary py-5"
           >
             {isGenerating ? (
