@@ -51,7 +51,7 @@ const CreatePost = () => {
         });
         const data = await res.json();
         if (data.error.message) {
-          setError(data.error.message);
+          setError("Error: Issue found on open AI api!");
           setErroVisible(true);
           setInfoVisible(true)
         } else {
@@ -113,7 +113,7 @@ const CreatePost = () => {
             ></path>
           </svg>
           <span>
-            Unfortunately my free credit on my accout already expired!
+            Unfortunately the free credit of this app already expired!!
           </span>
         </div>
       )}
